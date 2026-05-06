@@ -1,0 +1,29 @@
+id: sales.opportunity_risk.v1
+name: Opportunity Risk Analysis
+domain: sales
+description: Analyze risk signals in an opportunity using CRM fields, activity history, and seller notes.
+inputs:
+  opportunity_record: trusted-enterprise-data
+  activity_history: trusted-enterprise-data
+  seller_notes: trusted-enterprise-data
+grounding:
+  required_sources:
+    - crm_opportunity
+    - crm_activity
+  citations: optional
+output_contract:
+  format: json
+  fields:
+    - risk_level
+    - risk_factors
+    - missing_information
+    - recommended_actions
+guardrails:
+  - do_not_invent_deal_status
+  - separate_observed_signals_from_recommendations
+  - escalate_if_key_fields_missing
+prompt:
+  system: "You help sales teams identify risk in active opportunities using trusted CRM data."
+  developer: "Use observed CRM signals first. Keep recommendations actionable and tied to evidence."
+  user: "Assess opportunity risk and recommend next actions."
+

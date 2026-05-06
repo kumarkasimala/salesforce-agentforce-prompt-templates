@@ -84,6 +84,21 @@ docs/
   prompt-injection-boundaries.md
 ```
 
+## Included Examples
+
+- [Service Case Summary](./templates/service/case-summary.yaml)
+- [Grounded Support Reply](./templates/service/support-reply.yaml)
+- [Sales Account Research Brief](./templates/sales/account-research.yaml)
+- [Opportunity Risk Analysis](./templates/sales/opportunity-risk.yaml)
+- [Field Service Visit Preparation](./templates/field-service/visit-prep.yaml)
+- [Prompt Injection Review](./templates/governance/prompt-injection-review.yaml)
+
+## Validate Examples
+
+```bash
+npm run validate:yaml
+```
+
 ## Contribution Principles
 
 - Keep all examples public and generic.

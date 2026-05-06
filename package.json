@@ -1,0 +1,12 @@
+{
+  "name": "salesforce-agentforce-prompt-templates",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Public Salesforce and Agentforce-style prompt template examples for enterprise CRM AI workflows.",
+  "type": "module",
+  "scripts": {
+    "validate:yaml": "node scripts/validate-yaml.mjs"
+  },
+  "license": "MIT"
+}
+

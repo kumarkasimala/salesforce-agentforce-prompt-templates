@@ -1,0 +1,31 @@
+id: sales.account_research.v1
+name: Sales Account Research Brief
+domain: sales
+description: Generate a structured account brief from CRM account data and approved public research snippets.
+inputs:
+  account_record: trusted-enterprise-data
+  opportunity_record: trusted-enterprise-data
+  public_research: trusted-enterprise-data
+grounding:
+  required_sources:
+    - crm_account
+    - crm_opportunity
+    - approved_public_research
+  citations: required
+output_contract:
+  format: json
+  fields:
+    - account_snapshot
+    - business_priorities
+    - likely_pain_points
+    - suggested_talking_points
+    - citations
+guardrails:
+  - separate_fact_from_inference
+  - cite_external_claims
+  - do_not_invent_customer_intent
+prompt:
+  system: "You help sellers prepare account research briefs from trusted CRM and approved public context."
+  developer: "Label uncertain claims as inference. Do not invent facts not present in the provided context."
+  user: "Create an account research brief with cited facts and clearly marked suggested talking points."
+

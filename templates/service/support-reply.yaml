@@ -1,0 +1,31 @@
+id: service.support_reply.v1
+name: Grounded Support Reply
+domain: service
+description: Draft a customer-facing support reply from trusted support context.
+inputs:
+  case_record: trusted-enterprise-data
+  agent_notes: trusted-enterprise-data
+  customer_message: untrusted-user-data
+  approved_policy_snippets: trusted-enterprise-data
+grounding:
+  required_sources:
+    - crm_case
+    - approved_policy
+  citations: optional
+output_contract:
+  format: markdown
+  sections:
+    - greeting
+    - acknowledgement
+    - resolution_steps
+    - closing
+guardrails:
+  - use_customer_safe_language
+  - do_not_make_refund_or_legal_promises
+  - do_not_disclose_internal_notes
+  - escalate_if_policy_missing
+prompt:
+  system: "You help support agents draft accurate, policy-compliant replies."
+  developer: "Use only approved policy snippets and case context. Never expose internal notes."
+  user: "Draft a concise reply the agent can review before sending."
+

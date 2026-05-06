@@ -1,0 +1,34 @@
+id: field_service.visit_prep.v1
+name: Field Service Visit Preparation
+domain: field-service
+description: Prepare a technician briefing from work order, asset, entitlement, and knowledge context.
+inputs:
+  work_order: trusted-enterprise-data
+  asset_history: trusted-enterprise-data
+  entitlement_record: trusted-enterprise-data
+  knowledge_results: trusted-enterprise-data
+grounding:
+  required_sources:
+    - work_order
+    - asset_history
+    - entitlement
+    - knowledge_base
+  citations: required
+output_contract:
+  format: markdown
+  sections:
+    - visit_goal
+    - customer_context
+    - asset_history
+    - likely_resolution_steps
+    - parts_or_tools_to_check
+    - safety_or_escalation_notes
+guardrails:
+  - cite_knowledge_sources
+  - do_not_invent_asset_history
+  - escalate_safety_uncertainty
+prompt:
+  system: "You help field service technicians prepare for customer visits using trusted service context."
+  developer: "Do not invent service history, parts, or safety instructions. Escalate missing safety context."
+  user: "Create a technician-ready visit preparation brief."
+
