@@ -1,14 +1,31 @@
-# Salesforce Agentforce Prompt Template Examples
+# Enterprise CRM Prompt Template Patterns
 
-Public, original examples of enterprise CRM prompt templates inspired by common Salesforce and Agentforce use cases.
+Public, original examples and design notes for enterprise CRM prompt templates inspired by common Salesforce and Agentforce-style workflows.
 
 This repository does not contain Salesforce confidential information, internal code, proprietary Prompt Builder templates, customer data, or non-public implementation details. The examples are original public templates designed to demonstrate enterprise prompt engineering patterns.
+
+## Core Idea
+
+Enterprise prompt templates are not just prompts.
+
+In production AI systems, a prompt template can behave like a governed workflow specification. It may define the business task, required context, grounding sources, tool usage, output contract, policy boundaries, evaluation rules, and observability metadata.
+
+This repository demonstrates how CRM prompt templates can be designed as reusable, testable, and governable software artifacts.
 
 ## Purpose
 
 The goal is to show how enterprise prompt templates can be designed, grounded, evaluated, and governed for CRM workflows.
 
-The examples emphasize prompt engineering as enterprise system design: lifecycle management, context grounding, data resolution, structured outputs, tool/action integration, policy-aware execution, and observability.
+The examples emphasize prompt engineering as enterprise system design:
+
+- prompt lifecycle management
+- context grounding and runtime data resolution
+- structured outputs and validation
+- tool/action integration
+- policy-aware execution
+- trust boundaries and prompt injection defense
+- evaluation and regression testing
+- telemetry and observability
 
 ## Example Categories
 
@@ -25,12 +42,29 @@ The examples emphasize prompt engineering as enterprise system design: lifecycle
 - Prompt injection boundary handling
 - Agent action preparation
 
+## Reference Architecture
+
+```text
+Prompt Template
+   -> Context Resolution
+   -> Grounding Sources
+   -> Tool / Action Contracts
+   -> Policy + Trust Boundaries
+   -> Model Execution
+   -> Structured Output
+   -> Evaluation
+   -> Telemetry + Feedback Loop
+```
+
+See [Reference Architecture](./docs/reference-architecture.md) for the full design model.
+
 ## Template Structure
 
 ```yaml
 id: service_case_summary_v1
 name: Service Case Summary
 domain: service-cloud
+intent: Summarize a customer service case for an agent or workflow.
 inputs:
   - case_subject
   - case_description
@@ -64,6 +98,11 @@ evals:
   - completeness
   - policy_compliance
   - tone
+telemetry:
+  - template_id
+  - template_version
+  - grounding_sources
+  - output_validation_status
 ```
 
 ## Repository Layout
@@ -77,11 +116,17 @@ templates/
 evals/
   promptfoo/
 docs/
+  reference-architecture.md
   prompt-template-design.md
+  template-taxonomy.md
+  prompt-template-lifecycle.md
   grounding-patterns.md
-  governance-checklist.md
   structured-outputs.md
+  evaluation-methodology.md
+  governance-checklist.md
   prompt-injection-boundaries.md
+examples/
+  README.md
 ```
 
 ## Included Examples
@@ -92,6 +137,16 @@ docs/
 - [Opportunity Risk Analysis](./templates/sales/opportunity-risk.yaml)
 - [Field Service Visit Preparation](./templates/field-service/visit-prep.yaml)
 - [Prompt Injection Review](./templates/governance/prompt-injection-review.yaml)
+
+## Recommended Reading Path
+
+1. Start with [Reference Architecture](./docs/reference-architecture.md).
+2. Review [Prompt Template Design](./docs/prompt-template-design.md).
+3. Read [Grounding Patterns](./docs/grounding-patterns.md).
+4. Review [Structured Outputs](./docs/structured-outputs.md).
+5. Review [Prompt Injection Boundaries](./docs/prompt-injection-boundaries.md).
+6. Use [Evaluation Methodology](./docs/evaluation-methodology.md) to design tests.
+7. Use the [Governance Checklist](./docs/governance-checklist.md) before release.
 
 ## Validate Examples
 
@@ -104,8 +159,12 @@ npm run validate:yaml
 - Keep all examples public and generic.
 - Do not include customer data.
 - Do not copy proprietary Salesforce prompts.
+- Use realistic but fictional CRM scenarios.
 - Include evaluation cases for every template.
 - Document grounding assumptions and failure modes.
+- Document trust boundaries for user-provided and externally retrieved content.
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for contribution guidance.
 
 ## License
 
