@@ -2,7 +2,7 @@
 
 Public, original examples and design notes for enterprise CRM prompt templates inspired by common Salesforce and Agentforce-style workflows.
 
-This repository does not contain Salesforce confidential information, internal code, proprietary Prompt Builder templates, customer data, or non-public implementation details. The examples are original public templates designed to demonstrate enterprise prompt engineering patterns.
+I am a Software Architect at Salesforce working on Prompt Builder. This repository is my personal public work. It contains original, generic examples and design notes for enterprise prompt template patterns. It does not contain Salesforce confidential information, internal code, proprietary Prompt Builder templates, customer data, or non-public implementation details.
 
 ## Core Idea
 
